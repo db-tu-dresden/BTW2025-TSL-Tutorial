@@ -2,6 +2,19 @@
 
 This repository contains supplementary material for the tutorial "SIMD for Everyone - A tutorial to TSL", presented at Workshop on Novel Data Management Ideas on Heterogeneous Hardware Architectures (NoDMC) @ 21st Conference on Database Systems for Business, Technology and Web (BTW 2025) in Bamberg, Germany. 
 
+If you want to work "offline", just clone the repository and open it with VSCode (using the provided devcontainer):
+```console
+git clone --recurse-submodules https://github.com/db-tu-dresden/BTW2025-TSL-Tutorial.git
+```
+
+The setup is tested on:
+- x86-64 Linux (Arch, Ubuntu)
+- aarch64 Linux (Ubuntu)
+- x86-64 Windows 11
+
+If you face any hurdles setting up the environment, we highly recommend to use __Github Codespace__ (with the provided devcontainer).
+
+
 To bootstrap the tutorial, the repository contains a [devcontainer](./.devcontainer/devcontainer.json) and an associated [dockerfile](./.devcontainer/Dockerfile). 
 The image contains:
 
