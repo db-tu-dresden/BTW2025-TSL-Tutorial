@@ -1,0 +1,7 @@
+[
+  {
+    "key": "ctrl+shift+o",
+    "command": "simpleBrowser.show",
+    "args": ["https://db-tu-dresden.github.io/TSL/"]
+  }
+]

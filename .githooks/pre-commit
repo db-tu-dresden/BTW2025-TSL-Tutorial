@@ -1,0 +1,5 @@
+#!/bin/sh
+
+git submodule update --remote --checkout
+
+git add $(git submodule foreach --quiet --recursive 'echo $path')

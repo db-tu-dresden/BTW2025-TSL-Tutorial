@@ -1,0 +1,31 @@
+{
+    "name": "TSL Tutorial - BTW 2025",
+    "build": {
+        "dockerfile": "Dockerfile"
+    },
+    "remoteUser": "dev",
+    "postCreateCommand": "echo 'Setup Complete.'",
+    "customizations": {
+      "vscode": {
+        "extensions": [
+          "ms-vscode.cpptools",
+          "ms-python.python",
+          "ms-azuretools.vscode-docker",
+          "microsoft.simple-browser",
+          "ms-vscode.cmake-tools",
+          "ms-vscode.cpptools-extension-pack",
+          "ms-kubernetes-tools.vscode-kubernetes-tools",
+          "DBTUD.tslgen-edit"
+        ],
+        "keybindings": [
+          {
+            "key": "ctrl+shift+o",
+            "command": "simpleBrowser.show",
+            "args": ["https://db-tu-dresden.github.io/TSL/"]
+          }
+        ]
+      }
+    },
+    "postStartCommand": "sudo /bin/bash ./scripts/setup_hooks.sh",
+    "postAttachCommand": "sudo rm -rf /usr/include/tsl && sudo /bin/bash ./scripts/setup_tsl.sh && code -r README.md src/hello_tsl.cpp src/filter_aggregate.cpp src/filter_aggregate_live.hpp 3rdparty/tslgen/primitive_data/primitives/calc.yaml"
+}
