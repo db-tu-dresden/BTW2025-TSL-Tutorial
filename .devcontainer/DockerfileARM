@@ -1,0 +1,39 @@
+FROM ubuntu:latest
+
+# Set non-interactive mode to avoid prompts
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Update and install necessary packages
+RUN apt-get update && apt-get update && apt-get install -y \
+    git software-properties-common build-essential golang gh \
+    vim sudo bash-completion \
+    wget curl zsh gnupg \
+    lsb-release zip file \
+    cmake make && \
+    add-apt-repository -y universe && apt-get update && \
+    apt-get install -y ninja-build \
+    python3 python3-pip python3-venv \
+    clang-19 gcc-14 gdb  && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Create a non-root user
+RUN useradd -m -s /bin/bash dev && \
+    echo 'dev ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/dev
+
+# Switch to the new user
+USER dev
+WORKDIR /home/dev
+
+# Set up Python virtual environment and install requirements
+RUN wget https://raw.githubusercontent.com/db-tu-dresden/TSL/refs/heads/main/requirements.txt && \
+    python3 -m venv ./venv && \
+    . ./venv/bin/activate && \
+    pip install --no-cache-dir -r requirements.txt && \
+    deactivate && \
+    rm requirements.txt
+
+# Set environment variables
+ENV VIRTUAL_ENV=/home/dev/venv
+ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+
+WORKDIR /home/dev/
