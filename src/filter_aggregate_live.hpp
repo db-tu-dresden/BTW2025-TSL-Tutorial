@@ -54,7 +54,7 @@ auto filter_aggregate_simd_impl(std::span<const AggregateColumnT> to_agg, std::s
  */
 template <unsigned SimdParFilter, typename FilterColumnT, unsigned SimdParAggregate, typename AggregateColumnT>
 auto filter_aggregate_simd_differing_parallelism_impl(std::span<const AggregateColumnT> to_agg, std::span<const FilterColumnT> to_filter, FilterColumnT const filter_value) -> AggregateColumnT {
-  static_assert((SimdParAggregate & SimdParFilter)==0, "SimdParAggregate must be a multiple of SimdParFilter");
+  static_assert((SimdParAggregate % SimdParFilter)==0, "SimdParAggregate must be a multiple of SimdParFilter");
 
   using FilterProcStyle = simd_helper::simd_by_par_t<FilterColumnT, SimdParFilter>;
   using AggProcStyle = simd_helper::simd_by_par_t<AggregateColumnT, SimdParAggregate>;
