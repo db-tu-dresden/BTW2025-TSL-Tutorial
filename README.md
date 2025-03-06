@@ -12,6 +12,8 @@ The setup is tested on:
 - aarch64 Linux (Ubuntu)
 - x86-64 Windows 11
 
+On MacOS (with M>=1) change Line 4 in .devcontainer/devcontainer.json from "Dockerfile" to "DockerfileARM".
+
 If you face any hurdles setting up the environment, we highly recommend to use __Github Codespace__ (with the provided devcontainer).
 
 
